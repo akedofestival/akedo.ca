@@ -13,6 +13,9 @@ import Heading from "@/lib/components/core/typography/Heading";
 import { createJSON_LD, createMetadata } from "@/lib/utils/createMetadata";
 import Maps from "@/lib/components/Maps";
 
+import AAMapImg from "@/public/assets/2026/pop-up-map.png";
+import PopUpTable from "@/lib/components/bespoke/PopUpTable";
+
 export const metadata = createMetadata({ title: "Artist Alley Pop-Up" });
 
 const directionsUrl =
@@ -128,7 +131,7 @@ export default function PopupPage() {
 
         <section className="bg-[#f7ef56] py-16 md:py-20">
           <Container>
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
+            <div className="flex flex-col gap-10 lg:flex-row">
               <div>
                 <p className="font-black text-[#ff8300] uppercase">
                   Pop-Up Preview
@@ -152,8 +155,7 @@ export default function PopupPage() {
                   </p>
                 </div>
               </div>
-
-              <aside className="rounded-2xl bg-[#ff8300] p-6 text-white shadow-[0_6px_0_#147c68]">
+              <aside className="h-fit rounded-2xl bg-[#ff8300] p-6 text-white shadow-[0_6px_0_#147c68]">
                 <p className="text-sm font-black uppercase">Good to Know</p>
                 <ul className="mt-5 space-y-4 text-lg font-bold">
                   <li className="flex gap-3">
@@ -173,6 +175,25 @@ export default function PopupPage() {
                   </li>
                 </ul>
               </aside>
+            </div>
+            <div className="mt-24 flex flex-col items-center gap-10 lg:flex-row lg:items-start">
+              <div>
+                <Heading level="h2" className="mt-2 text-[#147c68]">
+                  Who&apos;s Attending?
+                </Heading>
+                <div className="mt-6 max-w-3xl space-y-5 text-lg leading-relaxed text-[#173f29] md:text-xl">
+                  <Image
+                    src={AAMapImg}
+                    height={900}
+                    width={600}
+                    className="sticky top-0 rounded-2xl border-2 border-[#147c68] bg-[#fff568] shadow-[0_5px_0_#147c68]"
+                    alt="A map of the artist alley, displaying tables number 1 through 20. 1-14 are arranged in a circle close to the entrance of the UC, 15-20 are on the far backend across from 12-8."
+                  />
+                </div>
+              </div>
+              <div className="overflow-clip rounded-2xl pb-[0.01rem] shadow-[0_6px_0_#147c68] lg:mt-18 lg:ml-14">
+                <PopUpTable />
+              </div>
             </div>
           </Container>
         </section>

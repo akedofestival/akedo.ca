@@ -14,6 +14,32 @@
   --foreground: #171717;
 }
 
+@layer base {
+  table {
+    text-align: center;
+    @apply rounded-2xl;
+    @media screen and (width <= 1020px) {
+      @apply w-full min-w-full;
+    }
+  }
+  thead {
+    @apply bg-[#147c68] text-white;
+  }
+  thead > tr th {
+    @apply px-4 py-4 text-sm md:text-xl;
+  }
+  tbody {
+    @apply rounded-2xl bg-[#ff8300] text-white;
+  }
+  tbody > tr td,
+  tbody > tr th {
+    @apply border-l-2 border-[#ff8300] px-1 py-2 text-sm md:text-xl;
+  }
+  tbody > tr > td > a * {
+    @apply text-xl transition-colors hover:text-[#147c68];
+  }
+}
+
 @theme {
   --breakpoint-xs: 375px;
   --color-brand-white: #efd864;
