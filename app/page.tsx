@@ -15,6 +15,7 @@ import Maps from "@/lib/components/Maps";
 import EarlyBirdPopup from "@/lib/components/pages/home/EarlyBirdPopup";
 import Hero from "@/lib/components/pages/home/Hero";
 import CFRULogo from "@/public/assets/2026/sponsors/CFRU_Logo_2025-long.png";
+import KWCreatorsLogo from "@/public/assets/2026/sponsors/kw-creators.png";
 
 import Image from "next/image";
 import { createJSON_LD, createMetadata } from "@/lib/utils/createMetadata";
@@ -104,26 +105,45 @@ export default function Home() {
                 <p className="text-lg">
                   Ākēdo Festival was made possible thanks to our sponsors!
                 </p>
-                <div className="w-full flex-1">
-                  <Image
-                    src={CFRULogo}
-                    width="300"
-                    height="100"
-                    alt="CFRU Logo"
-                    className="-mb-12"
-                  />
-                  <p className="mb-0 italic">
-                    CFRU 93.3FM is Guelph’s campus/community radio station and
-                    media centre, located on the second floor of the University
-                    Centre. We are a volunteer-based space, recognizing the
-                    essential contributions of volunteers and supporting people
-                    in their efforts to express themselves through media. We
-                    draw from the rich variety of skills and perspectives that
-                    Guelph and surrounding communities have to offer in order to
-                    create quality programming and to better serve the
-                    community. If interested in volunteering, please contact
-                    volunteer@cfru.ca!
-                  </p>
+                <div className="mt-6 grid gap-12 lg:grid-cols-2">
+                  <div className="flex w-full flex-col gap-4">
+                    <div className="flex h-36 items-center">
+                      <Image
+                        src={CFRULogo}
+                        alt="CFRU Radio and Media Centre logo"
+                        className="h-full w-auto max-w-full object-contain object-left"
+                      />
+                    </div>
+                    <p className="mb-0 italic">
+                      CFRU 93.3FM is Guelph’s campus/community radio station and
+                      media centre, located on the second floor of the
+                      University Centre. We are a volunteer-based space,
+                      recognizing the essential contributions of volunteers and
+                      supporting people in their efforts to express themselves
+                      through media. We draw from the rich variety of skills and
+                      perspectives that Guelph and surrounding communities have
+                      to offer in order to create quality programming and to
+                      better serve the community. If interested in volunteering,
+                      please contact volunteer@cfru.ca!
+                    </p>
+                  </div>
+
+                  <div className="flex w-full flex-col gap-4">
+                    <div className="flex h-36 items-center">
+                      <Image
+                        src={KWCreatorsLogo}
+                        alt="KWCreators logo"
+                        className="h-full w-auto max-w-full object-contain object-left"
+                      />
+                    </div>
+                    <p className="mb-0 italic">
+                      KW Creators is a community organization dedicated to
+                      supporting local artists, content creators, and indie
+                      developers through collaborative projects, events, and
+                      showcase opportunities.
+                    </p>
+                    <p className="font-semibold">@KWCreators</p>
+                  </div>
                 </div>
               </div>
             </section>
