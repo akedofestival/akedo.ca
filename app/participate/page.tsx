@@ -23,6 +23,8 @@ const mediaCrewApplicationUrl =
 const volunteerArtistApplicationUrl = "https://forms.gle/1CyEFmmTwt5cdwrj9";
 const guestCosplayerApplicationUrl = "https://forms.gle/qE5UKT8QRpD39gT6A";
 const videoContentCreatorApplicationUrl = "https://forms.gle/ddFq6gNrsiU4VdaFA";
+const moeCharacterCafeApplicationUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfMSSKTitOC2VjBSpRNQa_5yR0PpmZ-753BP2pSJDmVx5pZNQ/viewform";
 
 type Opportunity = {
   title: string;
@@ -67,6 +69,22 @@ const opportunities: Opportunity[] = [
         href: videoContentCreatorApplicationUrl,
       },
     ],
+  },
+  {
+    title: "Moe Character Cafe",
+    description:
+      "Make meals magical at Ākēdo Festival as a server, character performer, or barista. Volunteer from 12 PM to 5 PM, with several shifts available.",
+    applicationLinks: [
+      {
+        label: "Apply for the Moe Character Cafe",
+        href: moeCharacterCafeApplicationUrl,
+      },
+    ],
+    image: {
+      src: "/assets/participate/moe-character-cafe.png",
+      height: 1350,
+      width: 1080,
+    },
   },
   {
     title: "Artist Alley",
@@ -192,6 +210,9 @@ const vendorOpportunities = opportunities.filter(
 );
 const volunteerArtistOpportunities = opportunities.filter(
   (opportunity) => opportunity.title === "Volunteer Artists",
+);
+const moeCharacterCafeOpportunities = opportunities.filter(
+  (opportunity) => opportunity.title === "Moe Character Cafe",
 );
 const cardMarketOpportunities = opportunities.filter(
   (opportunity) => opportunity.title === "Card Market",
@@ -344,6 +365,37 @@ export default function ParticipatePage() {
 
           <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
             <p className="text-brand-orange text-sm font-bold uppercase">
+              Volunteer Applications
+            </p>
+            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
+              Moe Character Cafe
+            </h2>
+            <div className="mt-4 grid gap-4 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
+              <p>
+                Join us in the Moe Character Cafe to make meals magical at Ākēdo
+                Festival! If you&apos;re passionate about cosplay, great at
+                customer service, and looking to gain volunteer experience,
+                apply now.
+              </p>
+              <p>
+                We are looking for servers, character performers, and baristas
+                to join us from 12 PM to 5 PM, with several shifts available.
+                Applications will remain open until October 16, 2026.
+              </p>
+            </div>
+          </section>
+
+          <section className="grid gap-4 lg:grid-cols-2">
+            {moeCharacterCafeOpportunities.map((opportunity) => (
+              <OpportunityCard
+                key={opportunity.title}
+                opportunity={opportunity}
+              />
+            ))}
+          </section>
+
+          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
+            <p className="text-brand-orange text-sm font-bold uppercase">
               Volunteer Artist Intake
             </p>
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
@@ -389,8 +441,7 @@ export default function ParticipatePage() {
                 and similar retail goods.
               </p>
               <p>
-                Reapplications welcome. Applications are due September 28,
-                2026.
+                Reapplications welcome. Applications are due September 28, 2026.
               </p>
             </div>
           </section>
@@ -451,9 +502,9 @@ export default function ParticipatePage() {
                 process.
               </p>
               <p>
-                Positions are available for our Pop-Up Event on September 23
-                and our Main Festival on November 7. Recruitment will remain
-                open until all volunteer roles have been filled.
+                Positions are available for our Pop-Up Event on September 23 and
+                our Main Festival on November 7. Recruitment will remain open
+                until all volunteer roles have been filled.
               </p>
             </div>
           </section>
