@@ -20,6 +20,7 @@ export const metadata = createMetadata({ title: "Artist Alley Pop-Up" });
 
 const directionsUrl =
   "https://www.google.com/maps/search/?api=1&query=University%20Centre%20Courtyard%2C%20University%20of%20Guelph%2C%2050%20Stone%20Rd%20E%2C%20Guelph%2C%20ON%20N1G%202W1";
+const feedbackUrl = "https://forms.gle/sgeeeSq4J2QJ7aEy7";
 
 const mapUrl =
   "!1m18!1m12!1m3!1d2892.648502340325!2d-80.22883522315604!3d43.53052207110814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b9b2eb265211f%3A0x8677ac225d47cff1!2sUniversity%20Centre!5e0!3m2!1sen!2sca!4v1788310767923!5m2!1sen!2sca";
@@ -51,7 +52,55 @@ export default function PopupPage() {
   return (
     <>
       <main className="bg-[#fff568] text-[#173f29]">
-        <section className="relative isolate overflow-hidden bg-[#f7ef56] pt-28 pb-16 md:pt-32 md:pb-20">
+        <section className="bg-[#147c68] pt-28 pb-12 text-white md:pt-32 md:pb-14">
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+              <div className="max-w-4xl">
+                <p className="font-black text-[#fff568] uppercase">
+                  Thank You for Coming
+                </p>
+                <Heading level="h2" className="mt-2 text-white">
+                  Our First Artist Alley Pop-Up Was a Success!
+                </Heading>
+                <div className="mt-6 space-y-4 text-lg leading-relaxed text-white/90 md:text-xl">
+                  <p>
+                    We couldn&apos;t have asked for a better turnout. Thank you
+                    to everyone who came out and supported our artists.
+                  </p>
+                  <p>
+                    We invite everyone to fill out our feedback form, whether or
+                    not you attended. Your feedback helps us understand what you
+                    enjoyed and how we can improve as we continue planning
+                    future Ākēdo events.
+                  </p>
+                  <p className="text-base text-white/80 md:text-lg">
+                    The feedback form is anonymous. If you would like to make a
+                    report that requires follow-up, please email{` `}
+                    <Link
+                      className="font-bold text-[#fff568] underline decoration-2 underline-offset-4 hover:text-white focus:text-white"
+                      href="mailto:marketing@akedo.ca"
+                    >
+                      marketing@akedo.ca
+                    </Link>
+                    {` `}
+                    directly so our team can assist you.
+                  </p>
+                </div>
+              </div>
+              <Link
+                className="inline-flex w-fit items-center rounded-lg bg-[#ff8300] px-6 py-3 font-black text-white shadow-[0_4px_0_#fff568] transition-transform hover:-translate-y-0.5 focus:-translate-y-0.5"
+                href={feedbackUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Share Your Feedback
+                <i className="bi bi-arrow-right ml-2" />
+              </Link>
+            </div>
+          </Container>
+        </section>
+
+        <section className="relative isolate overflow-hidden bg-[#f7ef56] pt-16 pb-16 md:pt-20 md:pb-20">
           <div
             aria-hidden="true"
             className="absolute inset-x-0 bottom-0 h-24 bg-[#2f9b64]"
