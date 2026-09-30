@@ -100,7 +100,7 @@ const opportunities: Opportunity[] = [
   {
     title: "Vendor Hall",
     description:
-      "Businesses or sellers offering officially licensed products, commercial merchandise, trading cards, collectibles, apparel, and similar retail goods. Reapplications welcome.",
+      "Businesses or sellers offering officially licensed products, commercial merchandise, collectibles, apparel, and similar retail goods. Reapplications welcome.",
     applicationLinks: [
       {
         label: "Apply for Vendor Hall",
@@ -132,13 +132,8 @@ const opportunities: Opportunity[] = [
   {
     title: "Stage Performances",
     description:
-      "Join us on stage at the Ākēdo Festival! Whether you sing, dance, perform in a band, or have a unique talent to showcase, we welcome a variety of acts that bring energy and entertainment to our guests. Visit the application below for details. Applications close September 27th, 11:59 PM.",
-    applicationLinks: [
-      {
-        label: "Apply to Perform",
-        href: "https://forms.gle/RhtevK7g8nahNTGU9",
-      },
-    ],
+      "Join us on stage at the Ākēdo Festival! Whether you sing, dance, perform in a band, or have a unique talent to showcase, we welcome a variety of acts that bring energy and entertainment to our guests.",
+    statusLabel: "Applications Closed",
     image: {
       src: "/assets/participate/stage-performance.png",
       height: 2793,
@@ -251,11 +246,10 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
       {opportunity.image ? (
         <>
           <div
-            className={`pointer-events-none relative mx-auto mt-2 h-64 w-full xl:absolute xl:bottom-0 xl:mt-0 ${
-              opportunity.image.isWide
-                ? "xl:-right-20 xl:h-[98%] xl:w-[78%]"
-                : "xl:-right-7 xl:h-[74%] xl:w-[44%]"
-            }`}
+            className={`pointer-events-none relative mx-auto mt-2 h-64 w-full xl:absolute xl:bottom-0 xl:mt-0 ${opportunity.image.isWide
+              ? "xl:-right-20 xl:h-[98%] xl:w-[78%]"
+              : "xl:-right-7 xl:h-[74%] xl:w-[44%]"
+              }`}
           >
             <Image
               alt=""
@@ -286,9 +280,8 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
       ) : null}
       {opportunity.applicationLinks ? (
         <div
-          className={`relative z-10 flex w-fit flex-col gap-2 ${
-            opportunity.image ? "xl:max-w-[56%]" : ""
-          }`}
+          className={`relative z-10 flex w-fit flex-col gap-2 ${opportunity.image ? "xl:max-w-[56%]" : ""
+            }`}
         >
           {opportunity.applicationLinks.map((link) => (
             <Link
@@ -305,9 +298,8 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
         </div>
       ) : (
         <span
-          className={`border-brand-purple/30 text-brand-purple relative z-10 inline-flex w-fit items-center rounded-lg border bg-[#d8c9f2]/90 px-5 py-3 font-semibold ${
-            opportunity.image ? "xl:max-w-[56%]" : ""
-          }`}
+          className={`border-brand-purple/30 text-brand-purple relative z-10 inline-flex w-fit items-center rounded-lg border bg-[#d8c9f2]/90 px-5 py-3 font-semibold ${opportunity.image ? "xl:max-w-[56%]" : ""
+            }`}
         >
           {opportunity.statusLabel ?? "Applications Coming Soon"}
         </span>
@@ -441,7 +433,7 @@ export default function ParticipatePage() {
                 and similar retail goods.
               </p>
               <p>
-                Reapplications welcome. Applications are due September 28, 2026.
+                Reapplications welcome. Applications are due October 5, 2026.
               </p>
             </div>
           </section>
@@ -470,7 +462,7 @@ export default function ParticipatePage() {
               </p>
               <p>
                 Applications are reviewed on a first come, first served basis.
-                Applications will remain open until September 28, 2026, or until
+                Applications will remain open until October 5, 2026, or until
                 all available spaces have been filled, whichever comes first.
               </p>
             </div>
@@ -552,14 +544,14 @@ export default function ParticipatePage() {
 
           <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
             <p className="text-brand-orange text-sm font-bold uppercase">
-              Stage Performances
+              APPLICATIONS CLOSED
             </p>
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Performance Application
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75 md:text-lg">
-              Singers, dancers, bands, and unique performers are invited to
-              apply to perform at Ākēdo Festival.
+              Applications are now closed! Thank you to everyone who applied.
+              Please keep an eye on your email for results.
             </p>
           </section>
 
