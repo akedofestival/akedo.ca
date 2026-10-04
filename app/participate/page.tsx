@@ -17,12 +17,12 @@ export const metadata = createMetadata({ title: "Participate" });
 
 const ticketUrl = "https://www.zeffy.com/en-CA/ticketing/akedo-festival--2026";
 const vendorApplicationUrl = "https://forms.gle/mBAmWkUQnYLFYaD78";
-const setupTeardownApplicationUrl = "https://forms.gle/Uog5rCNvujtEzAM2A";
 const mediaCrewApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSeJMG-wGJoudaE7QPeyOvx_-kYALO86xWNBn7G-M3TJz5zvQQ/viewform?usp=sharing&ouid=106643813354642850168";
 const volunteerArtistApplicationUrl = "https://forms.gle/1CyEFmmTwt5cdwrj9";
 const guestCosplayerApplicationUrl = "https://forms.gle/qE5UKT8QRpD39gT6A";
 const videoContentCreatorApplicationUrl = "https://forms.gle/ddFq6gNrsiU4VdaFA";
+const posterRunnerApplicationUrl = "https://forms.gle/PcUUkRUYiFB2BGRn9";
 const moeCharacterCafeApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSfMSSKTitOC2VjBSpRNQa_5yR0PpmZ-753BP2pSJDmVx5pZNQ/viewform";
 
@@ -67,6 +67,17 @@ const opportunities: Opportunity[] = [
       {
         label: "Apply as a Video Content Creator",
         href: videoContentCreatorApplicationUrl,
+      },
+    ],
+  },
+  {
+    title: "Volunteer Poster Runner",
+    description:
+      "We’re looking for volunteers to help distribute Ākēdo Festival posters across the GTA, Peel Region, Halton Region, Waterloo Region, Guelph, Brantford, Hamilton, London, and beyond! Supplies will be provided. See the sign-up form for more details.",
+    applicationLinks: [
+      {
+        label: "Apply as a Poster Runner",
+        href: posterRunnerApplicationUrl,
       },
     ],
   },
@@ -159,22 +170,6 @@ const opportunities: Opportunity[] = [
     },
   },
   {
-    title: "Setup/Teardown Volunteers",
-    description:
-      "Help support the community and gain volunteer experience with Ākēdo by assisting with decorating, arranging tables and chairs, transporting supplies, organizing inventory, setting up signage, and supporting departments during setup and teardown.",
-    applicationLinks: [
-      {
-        label: "Apply to Volunteer",
-        href: setupTeardownApplicationUrl,
-      },
-    ],
-    image: {
-      src: "/assets/participate/volunteer-hiring.png",
-      height: 1350,
-      width: 1080,
-    },
-  },
-  {
     title: "Media Crew Volunteers",
     description:
       "Volunteer photographers, videographers, and audio enthusiasts are invited to help capture and preserve the memories of Ākēdo Festival.",
@@ -192,10 +187,11 @@ const opportunities: Opportunity[] = [
   },
 ];
 
-const rollingApplicationOpportunities = opportunities.filter(
+const featuredApplicationOpportunities = opportunities.filter(
   (opportunity) =>
     opportunity.title === "Guest Cosplayer Application" ||
-    opportunity.title === "Video Content Creator Application",
+    opportunity.title === "Video Content Creator Application" ||
+    opportunity.title === "Volunteer Poster Runner",
 );
 const artistAlleyOpportunities = opportunities.filter(
   (opportunity) => opportunity.title === "Artist Alley",
@@ -211,9 +207,6 @@ const moeCharacterCafeOpportunities = opportunities.filter(
 );
 const cardMarketOpportunities = opportunities.filter(
   (opportunity) => opportunity.title === "Card Market",
-);
-const setupTeardownOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Setup/Teardown Volunteers",
 );
 const mediaCrewOpportunities = opportunities.filter(
   (opportunity) => opportunity.title === "Media Crew Volunteers",
@@ -344,10 +337,10 @@ export default function ParticipatePage() {
           </div>
 
           <section
-            aria-label="Rolling applications"
+            aria-label="Featured applications"
             className="grid gap-4 lg:grid-cols-2"
           >
-            {rollingApplicationOpportunities.map((opportunity) => (
+            {featuredApplicationOpportunities.map((opportunity) => (
               <OpportunityCard
                 key={opportunity.title}
                 opportunity={opportunity}
@@ -470,39 +463,6 @@ export default function ParticipatePage() {
 
           <section className="grid gap-4 lg:grid-cols-2">
             {cardMarketOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Volunteer Applications
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Setup/Teardown Volunteers
-            </h2>
-            <div className="mt-4 grid gap-4 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
-              <p>
-                Apply now to help support the community and gain volunteer
-                experience with Ākēdo! As a Setup & Teardown Volunteer,
-                you&apos;ll assist with decorating, arranging tables and chairs,
-                transporting supplies, organizing inventory, setting up signage,
-                and supporting departments throughout the setup and teardown
-                process.
-              </p>
-              <p>
-                Positions are available for our Pop-Up Event on September 23 and
-                our Main Festival on November 7. Recruitment will remain open
-                until all volunteer roles have been filled.
-              </p>
-            </div>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {setupTeardownOpportunities.map((opportunity) => (
               <OpportunityCard
                 key={opportunity.title}
                 opportunity={opportunity}
