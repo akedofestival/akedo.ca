@@ -11,9 +11,12 @@ import Image from "next/image";
 import { Opportunity } from "./types";
 import Link from "next/link";
 import { useState } from "react";
+import MarkdownParagraph from "../core/typography/MarkdownParagraph";
 
 function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
   const [currentDate] = useState(() => Date.now());
+
+  const showNewBannerUntil = 48 * 60 * 60 * 1000; //48 hours
 
   return (
     <article
@@ -28,16 +31,19 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
             {opportunity.title}
           </h2>
           {opportunity.postedOn &&
-          opportunity.postedOn?.getUTCMilliseconds() - currentDate < 0 ? (
+          currentDate - opportunity.postedOn?.getUTCMilliseconds() >=
+            showNewBannerUntil ? (
             <span className="border-brand-orange bg-brand-orange flex flex-row gap-2 rounded-2xl border-2 px-2 text-white">
               <i className="bi bi-chat-left-heart-fill"></i>
               <p className="font-bold">NEW</p>
             </span>
           ) : null}
         </div>
-        <p className="mt-4 text-base leading-relaxed md:text-lg">
+
+        <MarkdownParagraph className="mt-4 text-base leading-relaxed md:text-lg">
           {opportunity.description}
-        </p>
+        </MarkdownParagraph>
+
         {opportunity.reviewNote ? (
           <p className="mt-4 text-base leading-relaxed md:text-lg">
             {opportunity.reviewNote}

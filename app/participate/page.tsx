@@ -46,7 +46,7 @@ const opportunities: Opportunity[] = [
   },
   {
     isFeatured: true,
-    postedOn: new Date(2026, 6, 5, 0, 0, 0, 0),
+    postedOn: new Date(2026, 8, 5, 0, 0, 0, 0),
     title: "On-site Volunteer Applications",
     description:
       "Help bring Ākēdo Festival to life by supporting the event on-site! Help with setup and teardown, registration, booth games and badge check! Applications are open until __October 19, 2026!__",
