@@ -12,6 +12,8 @@ import Container from "@/lib/components/core/Container";
 import Heading from "@/lib/components/core/typography/Heading";
 import NewsletterSignup from "@/lib/components/pages/participate/NewsletterSignup";
 import { createMetadata } from "@/lib/utils/createMetadata";
+import { Opportunity } from "@/lib/components/OpportunityCard/types";
+import OpportunityCard from "@/lib/components/OpportunityCard/OpportunityCard";
 
 export const metadata = createMetadata({ title: "Participate" });
 
@@ -23,29 +25,13 @@ const volunteerArtistApplicationUrl = "https://forms.gle/1CyEFmmTwt5cdwrj9";
 const guestCosplayerApplicationUrl = "https://forms.gle/qE5UKT8QRpD39gT6A";
 const videoContentCreatorApplicationUrl = "https://forms.gle/ddFq6gNrsiU4VdaFA";
 const posterRunnerApplicationUrl = "https://forms.gle/PcUUkRUYiFB2BGRn9";
+const onSiteApplicationUrl = "https://forms.gle/j8z83nDPehBeZSJ57";
 const moeCharacterCafeApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSfMSSKTitOC2VjBSpRNQa_5yR0PpmZ-753BP2pSJDmVx5pZNQ/viewform";
 
-type Opportunity = {
-  title: string;
-  description: string;
-  reviewNote?: string;
-  applicationLinks?: {
-    label: string;
-    href: string;
-  }[];
-  statusLabel?: string;
-  image?: {
-    src: string;
-    width: number;
-    height: number;
-    isWide?: boolean;
-    fadeLeft?: boolean;
-  };
-};
-
 const opportunities: Opportunity[] = [
   {
+    isFeatured: true,
     title: "Guest Cosplayer Application",
     description:
       "Join us on November 7th as a Guest Cosplayer! Interact in character with fans and create unforgettable moments with guests of all ages! Sign up now to be a part of our scheduled programming at Ākēdo Festival.",
@@ -59,6 +45,20 @@ const opportunities: Opportunity[] = [
     ],
   },
   {
+    isFeatured: true,
+    postedOn: new Date(2026, 8, 5, 0, 0, 0, 0),
+    title: "On-site Volunteer Applications",
+    description:
+      "Help bring Ākēdo Festival to life by supporting the event on-site! Help with setup and teardown, registration, booth games and badge check! Applications are open until __October 19, 2026!__",
+    applicationLinks: [
+      {
+        label: "Apply as an On-site Volunteer",
+        href: onSiteApplicationUrl,
+      },
+    ],
+  },
+  {
+    isFeatured: true,
     title: "Video Content Creator Application",
     description:
       "Have your work featured in Ākēdo Festival's promotional campaigns and advertisements, reaching thousands of viewers! Apply now to join our Marketing Department as a Video Content Creator. We are currently seeking volunteer actors, videographers, and video editors.",
@@ -71,6 +71,7 @@ const opportunities: Opportunity[] = [
     ],
   },
   {
+    isFeatured: true,
     title: "Volunteer Poster Runner",
     description:
       "We’re looking for volunteers to help distribute Ākēdo Festival posters across the GTA, Peel Region, Halton Region, Waterloo Region, Guelph, Brantford, Hamilton, London, and beyond! Supplies will be provided. See the sign-up form for more details.",
@@ -188,10 +189,7 @@ const opportunities: Opportunity[] = [
 ];
 
 const featuredApplicationOpportunities = opportunities.filter(
-  (opportunity) =>
-    opportunity.title === "Guest Cosplayer Application" ||
-    opportunity.title === "Video Content Creator Application" ||
-    opportunity.title === "Volunteer Poster Runner",
+  (opportunity) => opportunity.isFeatured,
 );
 const artistAlleyOpportunities = opportunities.filter(
   (opportunity) => opportunity.title === "Artist Alley",
@@ -214,92 +212,6 @@ const mediaCrewOpportunities = opportunities.filter(
 const performanceOpportunities = opportunities.filter(
   (opportunity) => opportunity.title === "Stage Performances",
 );
-
-function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
-  return (
-    <article
-      className="border-brand-purple/25 relative flex min-h-[22rem] flex-col justify-between gap-7 overflow-hidden rounded-2xl border bg-[#d8c9f2] p-6 md:p-8"
-      key={opportunity.title}
-    >
-      <div
-        className={`relative z-10 ${opportunity.image ? "xl:max-w-[68%]" : ""}`}
-      >
-        <h2 className="font-brand text-brand-purple text-3xl font-bold">
-          {opportunity.title}
-        </h2>
-        <p className="mt-4 text-base leading-relaxed md:text-lg">
-          {opportunity.description}
-        </p>
-        {opportunity.reviewNote ? (
-          <p className="mt-4 text-base leading-relaxed md:text-lg">
-            {opportunity.reviewNote}
-          </p>
-        ) : null}
-      </div>
-      {opportunity.image ? (
-        <>
-          <div
-            className={`pointer-events-none relative mx-auto mt-2 h-64 w-full xl:absolute xl:bottom-0 xl:mt-0 ${opportunity.image.isWide
-              ? "xl:-right-20 xl:h-[98%] xl:w-[78%]"
-              : "xl:-right-7 xl:h-[74%] xl:w-[44%]"
-              }`}
-          >
-            <Image
-              alt=""
-              className="h-full w-full object-contain object-bottom"
-              height={opportunity.image.height}
-              src={opportunity.image.src}
-              width={opportunity.image.width}
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-16 xl:hidden"
-              style={{
-                background: "linear-gradient(to bottom, transparent, #d8c9f2)",
-              }}
-            />
-          </div>
-          {opportunity.image.fadeLeft ? (
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-[62%] xl:block"
-              style={{
-                background:
-                  "linear-gradient(to right, #d8c9f2 0%, rgba(216, 201, 242, 0.96) 60%, rgba(216, 201, 242, 0) 100%)",
-              }}
-            />
-          ) : null}
-        </>
-      ) : null}
-      {opportunity.applicationLinks ? (
-        <div
-          className={`relative z-10 flex w-fit flex-col gap-2 ${opportunity.image ? "xl:max-w-[56%]" : ""
-            }`}
-        >
-          {opportunity.applicationLinks.map((link) => (
-            <Link
-              className="bg-brand-orange hover:bg-brand-purple focus:bg-brand-purple rounded-lg px-5 py-3 text-center font-semibold text-white transition-colors"
-              href={link.href}
-              key={link.href}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {link.label}
-              <i className="bi bi-arrow-right ml-2" />
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <span
-          className={`border-brand-purple/30 text-brand-purple relative z-10 inline-flex w-fit items-center rounded-lg border bg-[#d8c9f2]/90 px-5 py-3 font-semibold ${opportunity.image ? "xl:max-w-[56%]" : ""
-            }`}
-        >
-          {opportunity.statusLabel ?? "Applications Coming Soon"}
-        </span>
-      )}
-    </article>
-  );
-}
 
 export default function ParticipatePage() {
   return (
@@ -335,6 +247,14 @@ export default function ParticipatePage() {
               width={1644}
             />
           </div>
+          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
+            <p className="text-brand-orange text-sm font-bold uppercase">
+              Applications Open
+            </p>
+            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
+              Featured Opportunities
+            </h2>
+          </section>
 
           <section
             aria-label="Featured applications"
@@ -355,7 +275,7 @@ export default function ParticipatePage() {
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Moe Character Cafe
             </h2>
-            <div className="mt-4 grid gap-4 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
+            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
               <p>
                 Join us in the Moe Character Cafe to make meals magical at Ākēdo
                 Festival! If you&apos;re passionate about cosplay, great at
@@ -386,7 +306,7 @@ export default function ParticipatePage() {
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Volunteer Artists
             </h2>
-            <div className="mt-4 grid gap-4 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
+            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
               <p>
                 Bring your creativity to Ākēdo! We&apos;re looking for
                 Illustrators, Graphic Designers, and Video Content Creators to
@@ -418,7 +338,7 @@ export default function ParticipatePage() {
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Vendor Hall Applications
             </h2>
-            <div className="mt-4 grid gap-4 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
+            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
               <p>
                 Vendor Hall applications are open for a second round for
                 businesses or sellers offering officially licensed products,
@@ -447,7 +367,7 @@ export default function ParticipatePage() {
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Card Market Applications
             </h2>
-            <div className="mt-4 grid gap-4 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
+            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
               <p>
                 The Ākēdo Festival Card Market is a dedicated space for members
                 of the trading card game community to buy, sell, and trade
@@ -477,7 +397,7 @@ export default function ParticipatePage() {
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Media Crew Volunteers
             </h2>
-            <div className="mt-4 grid gap-4 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
+            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
               <p>
                 Ākēdo Festival is recruiting volunteer photographers,
                 videographers, and audio enthusiasts to help capture and
