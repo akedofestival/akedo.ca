@@ -18,7 +18,6 @@ import OpportunityCard from "@/lib/components/OpportunityCard/OpportunityCard";
 export const metadata = createMetadata({ title: "Participate" });
 
 const ticketUrl = "https://www.zeffy.com/en-CA/ticketing/akedo-festival--2026";
-const vendorApplicationUrl = "https://forms.gle/mBAmWkUQnYLFYaD78";
 const mediaCrewApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSeJMG-wGJoudaE7QPeyOvx_-kYALO86xWNBn7G-M3TJz5zvQQ/viewform?usp=sharing&ouid=106643813354642850168";
 const volunteerArtistApplicationUrl = "https://forms.gle/1CyEFmmTwt5cdwrj9";
@@ -28,6 +27,8 @@ const posterRunnerApplicationUrl = "https://forms.gle/PcUUkRUYiFB2BGRn9";
 const onSiteApplicationUrl = "https://forms.gle/j8z83nDPehBeZSJ57";
 const moeCharacterCafeApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSfMSSKTitOC2VjBSpRNQa_5yR0PpmZ-753BP2pSJDmVx5pZNQ/viewform";
+const remoteExternalOutreachApplicationUrl =
+  "https://forms.gle/2WRXnuzt6LeqsCu67";
 
 const opportunities: Opportunity[] = [
   {
@@ -54,6 +55,18 @@ const opportunities: Opportunity[] = [
       {
         label: "Apply as an On-site Volunteer",
         href: onSiteApplicationUrl,
+      },
+    ],
+  },
+  {
+    isFeatured: true,
+    title: "Remote External Outreach Assistant",
+    description:
+      "Love chatting with people and making new connections? Help us spread the word about Ākēdo Festival and connect with people in our community! This role is all about communication, whether that means sending emails, replying to DMs, browsing websites, or picking up the phone when needed. We’re looking for friendly, organized volunteers who can take initiative and aren’t afraid to reach out to others!",
+    applicationLinks: [
+      {
+        label: "Apply now to join our staff",
+        href: remoteExternalOutreachApplicationUrl,
       },
     ],
   },
@@ -112,13 +125,8 @@ const opportunities: Opportunity[] = [
   {
     title: "Vendor Hall",
     description:
-      "Businesses or sellers offering officially licensed products, commercial merchandise, collectibles, apparel, and similar retail goods. Reapplications welcome.",
-    applicationLinks: [
-      {
-        label: "Apply for Vendor Hall",
-        href: vendorApplicationUrl,
-      },
-    ],
+      "Businesses or sellers offering officially licensed products, commercial merchandise, collectibles, apparel, and similar retail goods.",
+    statusLabel: "Applications Closed",
     image: {
       src: "/assets/participate/vendor-hall.png",
       height: 2000,
@@ -158,12 +166,7 @@ const opportunities: Opportunity[] = [
     title: "Card Market",
     description:
       "A dedicated space for members of the trading card game community to buy, sell, and trade throughout Ākēdo Festival.",
-    applicationLinks: [
-      {
-        label: "Apply for Card Market",
-        href: "https://docs.google.com/forms/d/e/1FAIpQLSdq-UWnofLD8Iei5lFcxO9U2_chSCsc7d1fhnaqNp5g7l-V3g/viewform?usp=header",
-      },
-    ],
+    statusLabel: "Applications Closed",
     image: {
       src: "/assets/participate/card-market.png",
       height: 2875,
@@ -333,22 +336,15 @@ export default function ParticipatePage() {
 
           <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
             <p className="text-brand-orange text-sm font-bold uppercase">
-              Applications Open
+              Applications Closed
             </p>
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Vendor Hall Applications
             </h2>
-            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
-              <p>
-                Vendor Hall applications are open for a second round for
-                businesses or sellers offering officially licensed products,
-                commercial merchandise, trading cards, collectibles, apparel,
-                and similar retail goods.
-              </p>
-              <p>
-                Reapplications welcome. Applications are due October 5, 2026.
-              </p>
-            </div>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75 md:text-lg">
+              Applications for the 2026 Vendor Hall are now closed. Thank you
+              for your interest in joining Ākēdo Festival.
+            </p>
           </section>
 
           <section className="grid gap-4 lg:grid-cols-2">
@@ -362,23 +358,15 @@ export default function ParticipatePage() {
 
           <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
             <p className="text-brand-orange text-sm font-bold uppercase">
-              Applications Open
+              Applications Closed
             </p>
             <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
               Card Market Applications
             </h2>
-            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
-              <p>
-                The Ākēdo Festival Card Market is a dedicated space for members
-                of the trading card game community to buy, sell, and trade
-                throughout the event.
-              </p>
-              <p>
-                Applications are reviewed on a first come, first served basis.
-                Applications will remain open until October 5, 2026, or until
-                all available spaces have been filled, whichever comes first.
-              </p>
-            </div>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75 md:text-lg">
+              Applications for the 2026 Card Market are now closed. Thank you
+              for your interest in joining Ākēdo Festival.
+            </p>
           </section>
 
           <section className="grid gap-4 lg:grid-cols-2">
