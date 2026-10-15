@@ -23,6 +23,10 @@ export const ALL_NAVIGATION: NavigationType[] = [
     href: "/#venue",
   },
   {
+    title: "Festival Guide",
+    href: "/festival-info",
+  },
+  {
     title: "Participate",
     href: "/participate",
   },
