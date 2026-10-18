@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import Container from "@/lib/components/core/Container";
 import Heading from "@/lib/components/core/typography/Heading";
@@ -17,13 +18,18 @@ const areas = [
   {
     floor: "Floor 2 · UC 225 / 224 / 222",
     title: "Gryphon Gaming stations",
-    detail:
-      "Gryphon Gaming's specific activities have not yet been announced; activity details forthcoming.",
+    detail: [
+      "Gaming consoles will be set up throughout the designated areas, allowing attendees to drop in and play casually for the duration of Akedo Festival.",
+      "Room 225 will host our main Smash Bros tournament. Registration will open at 11:00 AM and close at approximately 1:30 PM, with the tournament scheduled to begin at 2:00 PM. The tournament's end time will depend on the number of participants registered.",
+    ],
   },
   {
     floor: "Floor 3 · UC 332",
     title: "Guelph Vietnamese Student Association (GVSA)",
-    detail: "12–3 PM · Activity/program still undecided.",
+    detail: [
+      "Learn a bit about Vietnamese culture while making paper Áo Dài (traditional Vietnamese dresses), creating Lì xì (lucky money envelopes), and lanterns. Feel free to follow along with our instructions or let your creativity take charge and create your own designs!",
+      "While crafting, enjoy Vietnamese music and cultural performances from Paris by Night which will be playing in the background",
+    ],
   },
   {
     floor: "Floor 4 · UC 442",
@@ -57,8 +63,8 @@ export default function FestivalInfoPage() {
   return (
     <>
       <div className="bg-brand-white inset-shadow-brand-purple/50 min-h-[15vh] bg-[url('/assets/hero-bg.png')] bg-auto bg-no-repeat pt-20 pb-6 md:pt-0 md:pb-0">
-        <Container className="flex min-h-0 items-center justify-center md:min-h-[15vh]">
-          <h1 className="font-brand text-brand-purple text-center text-4xl leading-tight font-bold sm:text-5xl md:text-6xl">
+        <Container className="flex min-h-0 w-full items-center justify-center md:min-h-[15vh]">
+          <h1 className="font-brand text-brand-purple w-full text-center text-4xl leading-tight font-bold sm:text-5xl md:text-6xl">
             Festival Guide
           </h1>
         </Container>
@@ -130,11 +136,53 @@ export default function FestivalInfoPage() {
                     <h3 className="font-brand text-brand-purple mt-2 text-2xl font-bold">
                       {area.title}
                     </h3>
-                    <p className="mt-3 leading-relaxed text-black/75">
-                      {area.detail}
-                    </p>
+                    <div className="mt-3 space-y-3 leading-relaxed text-black/75">
+                      {Array.isArray(area.detail) ? (
+                        area.detail.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))
+                      ) : (
+                        <p>{area.detail}</p>
+                      )}
+                    </div>
                   </article>
                 ))}
+              </div>
+              <div className="mt-8">
+                <p className="text-brand-orange text-sm font-bold uppercase">
+                  UC Floor 1 Courtyard
+                </p>
+                <Heading level="h3" className="text-brand-purple mt-1">
+                  Artist alley directory &amp; map
+                </Heading>
+                <div className="mt-5 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                  <figure className="border-brand-purple/25 overflow-hidden rounded-2xl border bg-white p-3 shadow-sm">
+                    <Image
+                      src="/assets/festival-guide/uc-courtyard-map.png"
+                      alt="Artist Alley Map for UC Floor 1 Courtyard, showing booth locations."
+                      width={960}
+                      height={1199}
+                      className="h-auto w-full"
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                    />
+                    <figcaption className="text-brand-purple mt-3 text-center font-semibold">
+                      Artist Alley Map
+                    </figcaption>
+                  </figure>
+                  <figure className="border-brand-purple/25 overflow-hidden rounded-2xl border bg-white p-3 shadow-sm">
+                    <Image
+                      src="/assets/festival-guide/uc-courtyard-directory.png"
+                      alt="Artist Alley Directory for UC Floor 1 Courtyard, listing participating artists and booths."
+                      width={960}
+                      height={1199}
+                      className="h-auto w-full"
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                    />
+                    <figcaption className="text-brand-purple mt-3 text-center font-semibold">
+                      Artist Alley Directory
+                    </figcaption>
+                  </figure>
+                </div>
               </div>
             </section>
 

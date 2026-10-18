@@ -20,6 +20,8 @@ export const metadata = createMetadata({ title: "Participate" });
 const ticketUrl = "https://www.zeffy.com/en-CA/ticketing/akedo-festival--2026";
 const mediaCrewApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSeJMG-wGJoudaE7QPeyOvx_-kYALO86xWNBn7G-M3TJz5zvQQ/viewform?usp=sharing&ouid=106643813354642850168";
+const mediaPassApplicationUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSer6NalYoMX33pSKC7qtC9kzrYg2fkxEJMrxokplrDIVBNZiQ/viewform?usp=sharing&ouid=106643813354642850168";
 const volunteerArtistApplicationUrl = "https://forms.gle/1CyEFmmTwt5cdwrj9";
 const guestCosplayerApplicationUrl = "https://forms.gle/qE5UKT8QRpD39gT6A";
 const videoContentCreatorApplicationUrl = "https://forms.gle/ddFq6gNrsiU4VdaFA";
@@ -455,6 +457,24 @@ export default function ParticipatePage() {
           </section>
 
           <NewsletterSignup />
+
+          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
+            <h2 className="font-brand text-brand-purple text-3xl font-bold">
+              Complimentary Media Passes
+            </h2>
+            <p className="mt-4 max-w-3xl text-left text-base leading-relaxed text-black/75 md:text-lg">
+              Ākēdo Festival offers complimentary entry to external media representatives, including newspaper and radio reporters, journalists, influencers, and vloggers, through our Media Pass program! Apply now to join us on November 7, 2026 at the University Centre for FREE!
+            </p>
+            <Link
+              className="bg-brand-orange hover:bg-brand-purple focus:bg-brand-purple mt-6 inline-flex w-fit items-center rounded-lg px-6 py-3 font-semibold text-white transition-colors"
+              href={mediaPassApplicationUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Apply now
+              <i aria-hidden="true" className="bi bi-arrow-right ml-2" />
+            </Link>
+          </section>
 
           <section className="bg-brand-indigo relative rounded-2xl px-6 py-8 text-white md:px-10 md:py-10">
             <Image
