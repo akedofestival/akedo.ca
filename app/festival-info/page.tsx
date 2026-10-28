@@ -4,38 +4,14 @@ import Image from "next/image";
 import Container from "@/lib/components/core/Container";
 import Heading from "@/lib/components/core/typography/Heading";
 import FestivalMap from "@/app/festival-info/FestivalMap";
+import RoomProgramming from "@/app/festival-info/RoomProgramming";
 import { createMetadata } from "@/lib/utils/createMetadata";
 
-export const metadata = createMetadata({ title: "Festival Guide" });
+export const metadata = createMetadata({
+  title: "Schedules, Maps and Programming",
+});
 
 const areas = [
-  {
-    floor: "Floor 4 · UC 430",
-    title: "Wii Club station",
-    detail:
-      "Wii Club's specific activities have not yet been announced; activity details forthcoming.",
-  },
-  {
-    floor: "Floor 2 · UC 225 / 224 / 222",
-    title: "Gryphon Gaming stations",
-    detail: [
-      "Gaming consoles will be set up throughout the designated areas, allowing attendees to drop in and play casually for the duration of Akedo Festival.",
-      "Room 225 will host our main Smash Bros tournament. Registration will open at 11:00 AM and close at approximately 1:30 PM, with the tournament scheduled to begin at 2:00 PM. The tournament's end time will depend on the number of participants registered.",
-    ],
-  },
-  {
-    floor: "Floor 3 · UC 332",
-    title: "Guelph Vietnamese Student Association (GVSA)",
-    detail: [
-      "Learn a bit about Vietnamese culture while making paper Áo Dài (traditional Vietnamese dresses), creating Lì xì (lucky money envelopes), and lanterns. Feel free to follow along with our instructions or let your creativity take charge and create your own designs!",
-      "While crafting, enjoy Vietnamese music and cultural performances from Paris by Night which will be playing in the background",
-    ],
-  },
-  {
-    floor: "Floor 4 · UC 442",
-    title: "Moe Character Café",
-    detail: "Menu forthcoming.",
-  },
   {
     floor: "Floor 0 · PCH",
     title: "Stage, vendors & booth games",
@@ -62,13 +38,7 @@ const generalSchedule = [
 export default function FestivalInfoPage() {
   return (
     <>
-      <div className="bg-brand-white inset-shadow-brand-purple/50 min-h-[15vh] bg-[url('/assets/hero-bg.png')] bg-auto bg-no-repeat pt-20 pb-6 md:pt-0 md:pb-0">
-        <Container className="flex min-h-0 w-full items-center justify-center md:min-h-[15vh]">
-          <h1 className="font-brand text-brand-purple w-full text-center text-4xl leading-tight font-bold sm:text-5xl md:text-6xl">
-            Festival Guide
-          </h1>
-        </Container>
-      </div>
+      <h1 className="sr-only">Schedules, Maps and Programming</h1>
       <main className="bg-white py-16 md:py-24">
         <Container extended className="max-w-7xl">
           <div className="flex flex-col gap-14">
@@ -77,7 +47,7 @@ export default function FestivalInfoPage() {
                 Visitor guide
               </p>
               <Heading level="h2" className="text-brand-purple mt-2">
-                Find your way around Ākēdo (WIP)
+                Find your way around Ākēdo
               </Heading>
               <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-black/75 md:text-xl">
                 This location guide uses the supplied campus map as its base.
@@ -100,8 +70,8 @@ export default function FestivalInfoPage() {
                   Campus map
                 </Heading>
                 <p className="mt-3 max-w-3xl leading-relaxed text-black/70">
-                  Select either route card to emphasize its path; both routes
-                  remain visible.
+                  Both walking routes are shown on the map. Each parking card
+                  includes its own walking-directions button.
                 </p>
               </div>
               <FestivalMap />
@@ -117,34 +87,29 @@ export default function FestivalInfoPage() {
                   Rooms &amp; activities
                 </p>
                 <Heading level="h2" className="text-brand-purple mt-1">
-                  Festival locations
+                  Schedules, Maps and Programming
                 </Heading>
                 <p className="mt-3 max-w-3xl leading-relaxed text-black/70">
                   University Centre room numbers and floors are listed as
                   provided; program and vendor details may change.
                 </p>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <RoomProgramming />
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {areas.map((area) => (
                   <article
                     key={area.floor}
-                    className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-6"
+                    className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-5"
                   >
                     <p className="text-brand-orange text-sm font-bold uppercase">
                       {area.floor}
                     </p>
-                    <h3 className="font-brand text-brand-purple mt-2 text-2xl font-bold">
+                    <h3 className="font-brand text-brand-purple mt-2 text-xl font-bold">
                       {area.title}
                     </h3>
-                    <div className="mt-3 space-y-3 leading-relaxed text-black/75">
-                      {Array.isArray(area.detail) ? (
-                        area.detail.map((paragraph) => (
-                          <p key={paragraph}>{paragraph}</p>
-                        ))
-                      ) : (
-                        <p>{area.detail}</p>
-                      )}
-                    </div>
+                    <p className="mt-2 leading-relaxed text-black/75">
+                      {area.detail}
+                    </p>
                   </article>
                 ))}
               </div>

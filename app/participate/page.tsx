@@ -26,9 +26,6 @@ const volunteerArtistApplicationUrl = "https://forms.gle/1CyEFmmTwt5cdwrj9";
 const guestCosplayerApplicationUrl = "https://forms.gle/qE5UKT8QRpD39gT6A";
 const videoContentCreatorApplicationUrl = "https://forms.gle/ddFq6gNrsiU4VdaFA";
 const posterRunnerApplicationUrl = "https://forms.gle/PcUUkRUYiFB2BGRn9";
-const onSiteApplicationUrl = "https://forms.gle/j8z83nDPehBeZSJ57";
-const moeCharacterCafeApplicationUrl =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfMSSKTitOC2VjBSpRNQa_5yR0PpmZ-753BP2pSJDmVx5pZNQ/viewform";
 const remoteExternalOutreachApplicationUrl =
   "https://forms.gle/2WRXnuzt6LeqsCu67";
 
@@ -52,13 +49,8 @@ const opportunities: Opportunity[] = [
     postedOn: new Date(2026, 8, 5, 0, 0, 0, 0),
     title: "On-site Volunteer Applications",
     description:
-      "Help bring Ākēdo Festival to life by supporting the event on-site! Help with setup and teardown, registration, booth games and badge check! Applications are open until __October 19, 2026!__",
-    applicationLinks: [
-      {
-        label: "Apply as an On-site Volunteer",
-        href: onSiteApplicationUrl,
-      },
-    ],
+      "Help bring Ākēdo Festival to life with setup and teardown, registration, booth games, and badge checks. Applications are now closed.",
+    statusLabel: "Applications Closed",
   },
   {
     isFeatured: true,
@@ -101,12 +93,7 @@ const opportunities: Opportunity[] = [
     title: "Moe Character Cafe",
     description:
       "Make meals magical at Ākēdo Festival as a server, character performer, or barista. Volunteer from 12 PM to 5 PM, with several shifts available.",
-    applicationLinks: [
-      {
-        label: "Apply for the Moe Character Cafe",
-        href: moeCharacterCafeApplicationUrl,
-      },
-    ],
+    statusLabel: "Applications Closed",
     image: {
       src: "/assets/participate/moe-character-cafe.png",
       height: 1350,
@@ -193,30 +180,64 @@ const opportunities: Opportunity[] = [
   },
 ];
 
-const featuredApplicationOpportunities = opportunities.filter(
-  (opportunity) => opportunity.isFeatured,
+const festivalTitles = [
+  "Volunteer Poster Runner",
+  "Media Crew Volunteers",
+  "Guest Cosplayer Application",
+];
+const yearRoundTitles = [
+  "Website Team",
+  "Volunteer Artists",
+  "Remote External Outreach Assistant",
+  "Video Content Creator Application",
+];
+opportunities.push({
+  title: "Website Team",
+  description:
+    "Apply now to join Ākēdo's Web Team! Volunteers help maintain, update, and improve our official website. We’re looking for people interested in web development, with experience in programming languages, web frameworks, or interface design. Professional experience is not required, and we welcome applicants at different skill levels!",
+  applicationLinks: [
+    {
+      label: "Apply for the Website Team",
+      href: "https://docs.google.com/forms/d/e/1FAIpQLSc-ZoJMWkh4miwTE9Tt54d2J3LHmSwJbp9pLweRzRUTGwdhCA/viewform",
+    },
+  ],
+});
+const closedOpportunities = opportunities.filter(
+  (opportunity) => opportunity.statusLabel === "Applications Closed",
 );
-const artistAlleyOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Artist Alley",
-);
-const vendorOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Vendor Hall",
-);
-const volunteerArtistOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Volunteer Artists",
-);
-const moeCharacterCafeOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Moe Character Cafe",
-);
-const cardMarketOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Card Market",
-);
-const mediaCrewOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Media Crew Volunteers",
-);
-const performanceOpportunities = opportunities.filter(
-  (opportunity) => opportunity.title === "Stage Performances",
-);
+
+function ApplicationGroup({
+  title,
+  description,
+  titles,
+}: {
+  title: string;
+  description: string;
+  titles: string[];
+}) {
+  return (
+    <section aria-label={title}>
+      <h2 className="font-brand text-brand-purple text-4xl font-bold">
+        {title}
+      </h2>
+      <p className="mt-3 mb-6 text-lg text-black/75">{description}</p>
+      <div className="grid gap-4 lg:grid-cols-2">
+        {titles
+          .map((title) => opportunities.find((item) => item.title === title))
+          .filter(
+            (item): item is Opportunity =>
+              !!item && item.statusLabel !== "Applications Closed",
+          )
+          .map((opportunity) => (
+            <OpportunityCard
+              key={opportunity.title}
+              opportunity={opportunity}
+            />
+          ))}
+      </div>
+    </section>
+  );
+}
 
 export default function ParticipatePage() {
   return (
@@ -252,218 +273,35 @@ export default function ParticipatePage() {
               width={1644}
             />
           </div>
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Applications Open
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Featured Opportunities
-            </h2>
-          </section>
-
-          <section
-            aria-label="Featured applications"
-            className="grid gap-4 lg:grid-cols-2"
-          >
-            {featuredApplicationOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Volunteer Applications
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Moe Character Cafe
-            </h2>
-            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
-              <p>
-                Join us in the Moe Character Cafe to make meals magical at Ākēdo
-                Festival! If you&apos;re passionate about cosplay, great at
-                customer service, and looking to gain volunteer experience,
-                apply now.
-              </p>
-              <p>
-                We are looking for servers, character performers, and baristas
-                to join us from 12 PM to 5 PM, with several shifts available.
-                Applications will remain open until October 16, 2026.
-              </p>
-            </div>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {moeCharacterCafeOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Volunteer Artist Intake
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Volunteer Artists
-            </h2>
-            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
-              <p>
-                Bring your creativity to Ākēdo! We&apos;re looking for
-                Illustrators, Graphic Designers, and Video Content Creators to
-                join the Ākēdo Marketing Dept. Whether you want to build your
-                portfolio, develop your skills, collaborate with other
-                creatives, or simply have fun, we&apos;d love to have you on the
-                team.
-              </p>
-              <p>
-                This is a long-term volunteer position that requires an ongoing
-                commitment to the team and its projects.
-              </p>
-            </div>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {volunteerArtistOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Applications Closed
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Vendor Hall Applications
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75 md:text-lg">
-              Applications for the 2026 Vendor Hall are now closed. Thank you
-              for your interest in joining Ākēdo Festival.
-            </p>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {vendorOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Applications Closed
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Card Market Applications
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75 md:text-lg">
-              Applications for the 2026 Card Market are now closed. Thank you
-              for your interest in joining Ākēdo Festival.
-            </p>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {cardMarketOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Volunteer Applications
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Media Crew Volunteers
-            </h2>
-            <div className="mt-4 flex flex-col gap-2.5 text-base leading-relaxed text-black/75 md:grid-cols-2 md:text-lg">
-              <p>
-                Ākēdo Festival is recruiting volunteer photographers,
-                videographers, and audio enthusiasts to help capture and
-                preserve the memories of Ākēdo Festival.
-              </p>
-              <p>
-                We encourage applicants to apply early, as roles are assigned on
-                a first-come, first-served basis. Applications will remain open
-                until October 12, 2026 at 11:59 PM, or until all positions have
-                been filled. View the application for full role descriptions,
-                responsibilities, and application requirements.
-              </p>
-            </div>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {mediaCrewOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              APPLICATIONS CLOSED
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Performance Application
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75 md:text-lg">
-              Applications are now closed! Thank you to everyone who applied.
-              Please keep an eye on your email for results.
-            </p>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {performanceOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
-            <p className="text-brand-orange text-sm font-bold uppercase">
-              Applications Closed
-            </p>
-            <h2 className="font-brand text-brand-purple mt-2 text-4xl font-bold">
-              Artist Alley Applications
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/75 md:text-lg">
-              Applications are now closed! Thank you to everyone who applied.
-              Please keep an eye on your email for results.
-            </p>
-          </section>
-
-          <section className="grid gap-4 lg:grid-cols-2">
-            {artistAlleyOpportunities.map((opportunity) => (
-              <OpportunityCard
-                key={opportunity.title}
-                opportunity={opportunity}
-              />
-            ))}
-          </section>
-
-          <NewsletterSignup />
+          <ApplicationGroup
+            title="Festival-day roles"
+            description="Support the November 7 festival. These roles wrap up when the convention is over—not an application deadline."
+            titles={festivalTitles}
+          />
+          <OpportunityCard
+            opportunity={{
+              title: "Cosplay Contest Sign-up",
+              description:
+                "Sign-ups for the Ākēdo cosplay contest are coming soon. Check back here for details.",
+              statusLabel: "Coming Soon",
+            }}
+          />
+          <ApplicationGroup
+            title="Year-round team roles"
+            description="Join the team beyond November 7. These volunteer positions involve an ongoing, year-round commitment."
+            titles={yearRoundTitles}
+          />
 
           <section className="border-brand-purple/25 rounded-2xl border bg-[#f8f2ff] px-6 py-8 md:px-8">
             <h2 className="font-brand text-brand-purple text-3xl font-bold">
               Complimentary Media Passes
             </h2>
             <p className="mt-4 max-w-3xl text-left text-base leading-relaxed text-black/75 md:text-lg">
-              Ākēdo Festival offers complimentary entry to external media representatives, including newspaper and radio reporters, journalists, influencers, and vloggers, through our Media Pass program! Apply now to join us on November 7, 2026 at the University Centre for FREE!
+              Ākēdo Festival offers complimentary entry to external media
+              representatives, including newspaper and radio reporters,
+              journalists, influencers, and vloggers, through our Media Pass
+              program! Apply now to join us on November 7, 2026 at the
+              University Centre for FREE!
             </p>
             <Link
               className="bg-brand-orange hover:bg-brand-purple focus:bg-brand-purple mt-6 inline-flex w-fit items-center rounded-lg px-6 py-3 font-semibold text-white transition-colors"
@@ -475,6 +313,8 @@ export default function ParticipatePage() {
               <i aria-hidden="true" className="bi bi-arrow-right ml-2" />
             </Link>
           </section>
+
+          <NewsletterSignup />
 
           <section className="bg-brand-indigo relative rounded-2xl px-6 py-8 text-white md:px-10 md:py-10">
             <Image
@@ -508,6 +348,28 @@ export default function ParticipatePage() {
                 Contact Marketing
                 <i className="bi bi-envelope ml-2" />
               </Link>
+            </div>
+          </section>
+          <section aria-label="Closed applications">
+            <h2 className="font-brand text-brand-purple text-4xl font-bold">
+              Closed
+            </h2>
+            <p className="mt-3 mb-6 text-lg text-black/75">
+              These applications are no longer accepting submissions. Thank you
+              to everyone who applied.
+            </p>
+            <div className="grid gap-4 lg:grid-cols-2">
+              {closedOpportunities.map((opportunity) => (
+                <OpportunityCard
+                  key={opportunity.title}
+                  opportunity={{
+                    ...opportunity,
+                    image: undefined,
+                    applicationLinks: undefined,
+                    postedOn: undefined,
+                  }}
+                />
+              ))}
             </div>
           </section>
         </div>

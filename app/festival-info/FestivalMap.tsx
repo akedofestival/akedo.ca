@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 
 type RouteId = "p8" | "p42";
 
@@ -37,9 +36,6 @@ const routes: Record<
 };
 
 export default function FestivalMap() {
-  const [activeRoute, setActiveRoute] = useState<RouteId>("p8");
-  const route = routes[activeRoute];
-
   return (
     <div className="flex flex-col gap-6">
       <div className="border-brand-purple w-full overflow-hidden rounded-2xl border-2 bg-white shadow-lg">
@@ -82,28 +78,100 @@ export default function FestivalMap() {
                   d={routes[id].path}
                   fill="none"
                   stroke={routes[id].color}
-                  strokeWidth={activeRoute === id ? 10 : 8}
+                  strokeWidth={8}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  opacity={activeRoute === id ? 1 : 0.9}
-                  filter={activeRoute === id ? "url(#route-glow)" : undefined}
+                  opacity={1}
+                  filter="url(#route-glow)"
                 />
                 {routes[id].uncertainPath && (
                   <path
                     d={routes[id].uncertainPath}
                     fill="none"
                     stroke={routes[id].color}
-                    strokeWidth={activeRoute === id ? 10 : 8}
+                    strokeWidth={8}
                     strokeDasharray="12 10"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    opacity={activeRoute === id ? 1 : 0.9}
-                    filter={activeRoute === id ? "url(#route-glow)" : undefined}
+                    opacity={1}
+                    filter="url(#route-glow)"
                   />
                 )}
               </g>
             ))}
             <g aria-hidden="true">
+              <circle
+                cx="355"
+                cy="207"
+                r="10"
+                fill="#adc900"
+                stroke="white"
+                strokeWidth="3"
+              />
+              <path
+                d="M 350 128 L 374 104 M 360 140 L 384 116"
+                stroke="white"
+                strokeWidth="6"
+                strokeLinecap="round"
+              />
+              <path
+                d="M 397 115 L 342 170 L 323 189 Q 318 194 326 198 L 355 207"
+                fill="none"
+                stroke="#adc900"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M 467 64 L 487 87 L 427 145 Q 420 151 416 141 L 405 114"
+                fill="none"
+                stroke="#adc900"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M 463 171 L 500 208 L 538 246 L 575 284 L 550 310 L 525 335 L 502 358"
+                fill="none"
+                stroke="#b142ac"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle
+                cx="502"
+                cy="358"
+                r="11"
+                fill="#b142ac"
+                stroke="white"
+                strokeWidth="3"
+              />
+              <circle
+                cx="397"
+                cy="122"
+                r="9"
+                fill="#662d8b"
+                stroke="white"
+                strokeWidth="3"
+              />
+              <g
+                fill="#171717"
+                stroke="white"
+                strokeWidth="5"
+                paintOrder="stroke"
+                fontSize="16"
+                fontWeight="800"
+              >
+                <text x="464" y="123">
+                  Parking (only 3 spots){" "}
+                </text>
+                <text x="310" y="100">
+                  Bike rack
+                </text>
+                <text x="330" y="390">
+                  Accessible · 15 min
+                </text>
+              </g>
               <circle
                 cx="937"
                 cy="280"
@@ -205,35 +273,14 @@ export default function FestivalMap() {
             </g>
           </svg>
         </div>
-        <div className="border-brand-purple/15 flex flex-wrap items-center gap-x-5 gap-y-2 border-t px-4 py-3 text-sm text-black/75">
-          <span className="font-semibold">Route overlay:</span>
-          <span className="inline-flex items-center gap-2">
-            <i className="h-1 w-6 rounded bg-[#b92732]" /> P8 solid path
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <i className="h-0 w-6 border-t-2 border-dashed border-[#b92732]" />
-            P8 dashed · crossing not marked
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <i className="h-1 w-6 rounded bg-[#147c68]" /> P42 route
-          </span>
-          <span className="text-black/55">
-            Use the route buttons below to highlight a path.
-          </span>
-        </div>
       </div>
 
       <div className="flex flex-col gap-4" aria-label="Parking route options">
         {(["p8", "p42"] as const).map((id) => (
-          <button
+          <article
             key={id}
-            type="button"
-            aria-pressed={activeRoute === id}
-            aria-controls="campus-route-overlay"
             aria-label={routes[id].title}
-            aria-describedby={`route-description-${id}`}
-            onClick={() => setActiveRoute(id)}
-            className={`focus-visible:ring-brand-orange w-full rounded-2xl border-2 p-5 text-left transition-colors focus-visible:ring-4 ${activeRoute === id ? "border-brand-purple bg-[#f8f2ff] shadow-md" : "border-brand-purple/20 hover:border-brand-purple/60 bg-white"}`}
+            className="border-brand-purple/25 rounded-2xl border-2 bg-white p-5"
           >
             <span className="text-brand-orange text-sm font-bold tracking-wide uppercase">
               {routes[id].start}
@@ -247,18 +294,55 @@ export default function FestivalMap() {
             >
               {routes[id].instructions}
             </span>
-          </button>
+            <a
+              href={
+                id === "p8"
+                  ? "https://www.google.com/maps/dir/P8+-+Visitor+Parking+(with+meters),+Guelph,+ON+N1G+2W2/43.5302015,-80.2258264/@43.5301249,-80.2271799,17z/data=!3m1!4b1!4m9!4m8!1m5!1m1!1s0x882b9b2e634d753b:0xef058856dc448107!2m2!1d-80.2234662!2d43.5303725!1m0!3e3?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+                  : "https://www.google.com/maps/dir/P42+Visitor,+Pick-up%2FDrop-off,+Taxis+and+Motorcycles,+Christie+Ln,+Guelph,+ON+N1G+4Y2/43.5302015,-80.2258264/@43.5303777,-80.2272186,17z/data=!4m9!4m8!1m5!1m1!1s0x882b9b2c13337313:0x511ecc2304e0d02d!2m2!1d-80.2255046!2d43.5290268!1m0!3e3?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-brand-purple focus-visible:ring-brand-orange mt-4 inline-flex rounded-lg px-5 py-3 font-semibold text-white focus-visible:ring-4"
+            >
+              Open walking directions from {id.toUpperCase()}
+            </a>
+          </article>
         ))}
-        <p className="sr-only" aria-live="polite" aria-atomic="true">
-          Highlighted route: {route.title}
+        <article
+          aria-label="Bike rack"
+          className="border-brand-purple/25 rounded-2xl border-2 bg-white p-5"
+        >
+          <h3 className="font-brand text-brand-purple text-2xl font-bold">
+            Bike rack
+          </h3>
+          <p className="mt-3 text-black/75">
+            Bicycle parking near the University Centre. Open the supplied Google
+            Maps route for directions.
+          </p>
+          <a
+            href="https://www.google.com/maps/dir/Parking+Lot+for+Bicycles,+Guelph,+ON+N1G+2W2/43.5302015,-80.2258907/@43.5309161,-80.2267571,17.95z/data=!4m9!4m8!1m5!1m1!1s0x882b9b2eca17aaab:0x30949593ce8ab35e!2m2!1d-80.2262604!2d43.5312648!1m0!3e3?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-brand-purple mt-4 inline-flex rounded-lg px-5 py-3 font-semibold text-white focus-visible:ring-4"
+          >
+            Open bike-rack directions
+          </a>
+        </article>
+        <p className="text-sm text-black/65">
+          Follow-along directions open in Google Maps. Confirm the selected
+          parking lot and entrance before starting; the provider chooses its own
+          route.
         </p>
         <div className="bg-brand-indigo rounded-2xl p-5 text-white">
           <h3 className="font-brand text-xl font-bold">
             Parking &amp; access note
           </h3>
           <p className="mt-2 leading-relaxed text-white/85">
-            Accessible 15-minute parking is listed in the event information. Its
-            location is not identified on this map, so it is not marked here.
+            Parking, the bike rack, and the accessible 15-minute parking
+            approach are annotated from the supplied reference image. These are
+            approximate visual locations, not surveyed spaces or a verified
+            step-free route. Check posted signs and access conditions on
+            arrival.
           </p>
         </div>
       </div>
