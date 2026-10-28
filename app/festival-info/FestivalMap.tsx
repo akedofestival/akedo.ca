@@ -29,7 +29,7 @@ const routes: Record<
     title: "P42 → University Centre",
     start: "P42 · Visitor Parking",
     instructions:
-      "From P42, follow the outdoor path north along the east edge of Conservatory Gardens to the GO Terminal, University Centre Bus Loop. Continue northwest along the walkway around the bus loop, then follow the path to the University Centre outdoor approach.",
+      "From P42, which offers regular visitor parking as well as accessible and 15-minute parking, follow the outdoor path north along the east edge of Conservatory Gardens to the GO Terminal, University Centre Bus Loop. Continue northwest along the walkway around the bus loop, then follow the path to the University Centre outdoor approach.",
     path: "M 568 652 L 574 621 L 580 590 L 586 560 L 593 530 L 579 506 L 560 484 L 540 460 L 520 438 L 500 416 L 485 395 L 475 380 L 490 388 L 500 385",
     color: "#147c68",
   },
@@ -109,13 +109,13 @@ export default function FestivalMap() {
                 strokeWidth="3"
               />
               <path
-                d="M 350 128 L 374 104 M 360 140 L 384 116"
+                d="M 397 61 L 421 37 M 407 73 L 431 49"
                 stroke="white"
                 strokeWidth="6"
                 strokeLinecap="round"
               />
               <path
-                d="M 397 115 L 342 170 L 323 189 Q 318 194 326 198 L 355 207"
+                d="M 448 64 L 323 189 Q 318 194 326 198 L 355 207"
                 fill="none"
                 stroke="#adc900"
                 strokeWidth="8"
@@ -123,15 +123,7 @@ export default function FestivalMap() {
                 strokeLinejoin="round"
               />
               <path
-                d="M 467 64 L 487 87 L 427 145 Q 420 151 416 141 L 405 114"
-                fill="none"
-                stroke="#adc900"
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M 463 171 L 500 208 L 538 246 L 575 284 L 550 310 L 525 335 L 502 358"
+                d="M 401 111 L 463 171 L 500 208 L 538 246 L 575 284 L 550 310 L 525 335 L 502 358"
                 fill="none"
                 stroke="#b142ac"
                 strokeWidth="8"
@@ -147,8 +139,8 @@ export default function FestivalMap() {
                 strokeWidth="3"
               />
               <circle
-                cx="397"
-                cy="122"
+                cx="422"
+                cy="53"
                 r="9"
                 fill="#662d8b"
                 stroke="white"
@@ -162,14 +154,14 @@ export default function FestivalMap() {
                 fontSize="16"
                 fontWeight="800"
               >
-                <text x="464" y="123">
-                  Parking (only 3 spots){" "}
+                <text x="464" y="105">
+                  <tspan x="464">Parking (only 3 spots)</tspan>
+                  <tspan x="464" dy="20">
+                    15 min · drop-off &amp; accessibility only
+                  </tspan>
                 </text>
-                <text x="310" y="100">
+                <text x="340" y="32">
                   Bike rack
-                </text>
-                <text x="330" y="390">
-                  Accessible · 15 min
                 </text>
               </g>
               <circle
@@ -215,8 +207,8 @@ export default function FestivalMap() {
               <rect
                 x="496"
                 y="663"
-                width="152"
-                height="23"
+                width="340"
+                height="47"
                 rx="5"
                 fill="white"
                 fillOpacity=".94"
@@ -228,7 +220,10 @@ export default function FestivalMap() {
                 fontSize="15"
                 fontWeight="700"
               >
-                Visitor Parking
+                <tspan x="503">Regular visitor parking</tspan>
+                <tspan x="503" dy="20">
+                  Also accessible &amp; 15-minute parking
+                </tspan>
               </text>
               <circle
                 cx="570"
@@ -338,11 +333,12 @@ export default function FestivalMap() {
             Parking &amp; access note
           </h3>
           <p className="mt-2 leading-relaxed text-white/85">
-            Parking, the bike rack, and the accessible 15-minute parking
-            approach are annotated from the supplied reference image. These are
-            approximate visual locations, not surveyed spaces or a verified
-            step-free route. Check posted signs and access conditions on
-            arrival.
+            The yellow parking area has only 3 spots, with a 15-minute limit for
+            drop-off and accessibility only. Parking, the bike rack, and the
+            accessible 15-minute parking approach are annotated from the
+            supplied reference image. These are approximate visual locations,
+            not surveyed spaces or a verified step-free route. Check posted
+            signs and access conditions on arrival.
           </p>
         </div>
       </div>
