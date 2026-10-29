@@ -282,8 +282,13 @@ export default function ParticipatePage() {
             opportunity={{
               title: "Cosplay Contest Sign-up",
               description:
-                "Sign-ups for the Ākēdo cosplay contest are coming soon. Check back here for details.",
-              statusLabel: "Coming Soon",
+                "Join us in showcasing your beautiful cosplay! You are free to sing or dance, catwalk, or just show off your cosplay in your own unique way. The competition will take place on stage from 1:30 PM to 2:30 PM. Compete for your chance to win from our $100 prize pool!",
+              applicationLinks: [
+                {
+                  label: "Sign up for the Cosplay Contest",
+                  href: "https://docs.google.com/forms/d/e/1FAIpQLSdlq3T3zSpuNYnMUUF_9pXaT24BVAX3U8q73qRha4v7ZkOPHw/viewform",
+                },
+              ],
             }}
           />
           <ApplicationGroup

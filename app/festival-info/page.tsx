@@ -27,12 +27,12 @@ const areas = [
 ];
 
 const generalSchedule = [
-  ["12:00–12:15", "Introduction & sponsors"],
-  ["12:15–1:15", "Mixed performances"],
-  ["1:30–2:30", "Cosplay contest"],
-  ["2:45–3:45", "Mixed performances"],
-  ["4:00–5:00", "Idol Rush interactive activity (dance workshop)"],
-  ["5:00–6:30", "Trivia by UTM + ACG"],
+  ["12:30 PM–12:44 PM", "Introduction + Sponsors"],
+  ["12:44 PM–1:25 PM", "Performances (Mix)"],
+  ["1:30 PM–2:30 PM", "Cosplay Contest"],
+  ["2:45 PM–3:45 PM", "Performances (Mix)"],
+  ["4:00 PM–5:00 PM", "Open-Floor Random Play Dance (RPD) by Idol Rush"],
+  ["5:00 PM–6:30 PM", "Trivia by UTM + ACG"],
 ];
 
 export default function FestivalInfoPage() {
@@ -113,6 +113,32 @@ export default function FestivalInfoPage() {
                   </article>
                 ))}
               </div>
+              <section
+                aria-label="Moe Character Cafe menu"
+                className="mt-8 text-center"
+              >
+                <Heading level="h3" className="text-brand-purple">
+                  Moe Character Cafe menu · UC 442
+                </Heading>
+                <a
+                  href="/assets/festival-guide/moe-cafe-menu.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mx-auto mt-4 block w-full max-w-3xl"
+                >
+                  <Image
+                    src="/assets/festival-guide/moe-cafe-menu.png"
+                    alt="Moe Character Cafe menu: appetizers, sweet treats, mains and drinks, with prices and dietary symbols. Open the full-size menu to read all items."
+                    width={1080}
+                    height={1350}
+                    sizes="(min-width: 1024px) 768px, 100vw"
+                    className="h-auto w-full rounded-2xl"
+                  />
+                  <span className="text-brand-purple mt-2 inline-block underline">
+                    Open full-size menu
+                  </span>
+                </a>
+              </section>
               <div className="mt-8">
                 <p className="text-brand-orange text-sm font-bold uppercase">
                   UC Floor 1 Courtyard
